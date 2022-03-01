@@ -11,6 +11,7 @@ public class GameManager {
     private final BlockManager blockManager;
     private final PlayerManager playerManager;
 
+
     private GameStartCountdownTask gameStartCountdownTask;
 
     public GameManager(PixelCategorySG plugin){
@@ -38,7 +39,7 @@ public class GameManager {
                 getPlayerManager().giveKits();
                 break;
             case STARTING:
-                Bukkit.broadcastMessage("Startig!");
+                Bukkit.broadcastMessage("Starting!");
                 // start countdown task
                 // teleport players
                 // clear inventories

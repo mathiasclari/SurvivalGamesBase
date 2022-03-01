@@ -13,7 +13,8 @@ public class BlockManager {
     public BlockManager(GameManager gameManager){
         this.gameManager = gameManager;
 
-        allowedToBreak.add(Material.OAK_LEAVES);
+        allowedToBreak.add(Material.TALL_GRASS);
+        allowedToBreak.add(Material.GRASS);
     }
 
     private Set<Material> allowedToBreak = new HashSet<>();

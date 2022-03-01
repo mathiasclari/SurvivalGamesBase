@@ -21,7 +21,7 @@ public class PlayerManager {
     }
 
     public void giveKit(Player player){
-        player.getInventory().addItem(new ItemStack(Material.IRON_SWORD));
+        player.getInventory().addItem(new ItemStack(Material.ARROW));
     }
 
 }
