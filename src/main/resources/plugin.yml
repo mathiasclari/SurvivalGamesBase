@@ -5,3 +5,6 @@ api-version: 1.18
 authors: [ Mat ]
 description: SurvivalGamesPlugin For ActiCraft
 website: https://discord.gg/acticraft
+commands:
+  vanish:
+  start:
