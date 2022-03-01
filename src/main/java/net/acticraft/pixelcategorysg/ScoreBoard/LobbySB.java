@@ -33,13 +33,13 @@ public class LobbySB implements Listener {
         Scoreboard board = manager.getNewScoreboard();
         Objective obj = board.registerNewObjective("LobbyScoreBoard","dummy", ChatColor.GOLD+""+ChatColor.BOLD+ "SurvivalGames");
         obj.setDisplaySlot(DisplaySlot.SIDEBAR);
-        Score score5 = obj.getScore(ChatColor.GOLD +"✧"+ChatColor.YELLOW + "Wins: "+ ChatColor.WHITE +  "1");
+        Score score5 = obj.getScore(ChatColor.GOLD +"✦ "+ChatColor.GRAY + "Wins: "+ ChatColor.WHITE +  "1");
         score5.setScore(5);
-        Score score6 = obj.getScore(ChatColor.GOLD +"✧"+ChatColor.YELLOW + "Kills: "+ ChatColor.WHITE +  "1");
+        Score score6 = obj.getScore(ChatColor.GOLD +"✦ "+ChatColor.GRAY + "Kills: "+ ChatColor.WHITE +  "1");
         score6.setScore(4);
-        Score score7 = obj.getScore(ChatColor.GOLD +"✧"+ChatColor.YELLOW + "Deaths: "+ ChatColor.WHITE +  "1");
+        Score score7 = obj.getScore(ChatColor.GOLD +"✦ "+ChatColor.GRAY + "Deaths: "+ ChatColor.WHITE +  "1");
         score7.setScore(3);
-        Score score9 = obj.getScore(ChatColor.GOLD + "play.acticraft.net");
+        Score score9 = obj.getScore(ChatColor.GOLD+""+ChatColor.BOLD+ "play.acticraft.net");
         score9.setScore(1);
         p.setScoreboard(board);
 
