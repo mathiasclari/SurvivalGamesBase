@@ -1,7 +1,10 @@
 package net.acticraft.pixelcategorysg.ScoreBoard;
 
+import net.acticraft.pixelcategorysg.Stats.PlayerStatsHG;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
+import org.bukkit.Server;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -15,7 +18,12 @@ public class LobbySB implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent e){
-        createBoard(e.getPlayer());
+
+        if(e.getPlayer().getWorld().getName().equals("world")) {
+
+            createBoard(e.getPlayer());
+        }
+
     }
 
     public void createBoard(Player p) {
@@ -25,18 +33,14 @@ public class LobbySB implements Listener {
         Scoreboard board = manager.getNewScoreboard();
         Objective obj = board.registerNewObjective("LobbyScoreBoard","dummy", ChatColor.GOLD+""+ChatColor.BOLD+ "SurvivalGames");
         obj.setDisplaySlot(DisplaySlot.SIDEBAR);
-        Score score = obj.getScore("");
-        score.setScore(3);
-        Score score2 = obj.getScore(ChatColor.YELLOW + "Online Players: "+ ChatColor.WHITE + Bukkit.getOnlinePlayers().size());
-        score2.setScore(2);
-        Score score3 = obj.getScore(ChatColor.YELLOW + " ");
-        score3.setScore(2);
-        Score score4 = obj.getScore(ChatColor.YELLOW + "Online Players: "+ ChatColor.WHITE + Bukkit.getOnlinePlayers().size());
-        score4.setScore(2);
-        Score score5 = obj.getScore(ChatColor.YELLOW + " ");
-        score5.setScore(2);
-        Score score6 = obj.getScore(ChatColor.GOLD + "play.acticraft.net");
-        score6.setScore(1);
+        Score score5 = obj.getScore(ChatColor.GOLD +"✧"+ChatColor.YELLOW + "Wins: "+ ChatColor.WHITE +  "1");
+        score5.setScore(5);
+        Score score6 = obj.getScore(ChatColor.GOLD +"✧"+ChatColor.YELLOW + "Kills: "+ ChatColor.WHITE +  "1");
+        score6.setScore(4);
+        Score score7 = obj.getScore(ChatColor.GOLD +"✧"+ChatColor.YELLOW + "Deaths: "+ ChatColor.WHITE +  "1");
+        score7.setScore(3);
+        Score score9 = obj.getScore(ChatColor.GOLD + "play.acticraft.net");
+        score9.setScore(1);
         p.setScoreboard(board);
 
     }
