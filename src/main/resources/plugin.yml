@@ -1,0 +1,7 @@
+name: PixelSurvivalGames
+version: '${project.version}'
+main: net.acticraft.pixelcategorysg.PixelCategorySG
+api-version: 1.18
+authors: [ Mat ]
+description: SurvivalGamesPlugin For ActiCraft
+website: https://discord.gg/acticraft
