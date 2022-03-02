@@ -4,11 +4,8 @@ import net.acticraft.pixelcategorysg.GameManager.GameManager;
 import net.acticraft.pixelcategorysg.GameManager.GameState;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Server;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
-
-import java.util.UUID;
 
 public class GameStartCountdownTask extends BukkitRunnable {
 

@@ -1,37 +1,61 @@
 package net.acticraft.pixelcategorysg;
 
-import fr.mrmicky.fastboard.FastBoard;
 import net.acticraft.pixelcategorysg.Commands.StartCommand;
 import net.acticraft.pixelcategorysg.Commands.StopCommand;
 import net.acticraft.pixelcategorysg.GameManager.GameManager;
+import net.acticraft.pixelcategorysg.GameManager.GameState;
 import net.acticraft.pixelcategorysg.Listeners.BlockBreakListener;
 import net.acticraft.pixelcategorysg.Listeners.FireSpreadListener;
 import net.acticraft.pixelcategorysg.Listeners.MobSpawnListener;
+import net.acticraft.pixelcategorysg.MySql.MySQL;
 import net.acticraft.pixelcategorysg.ScoreBoard.LobbySB;
-import org.bukkit.configuration.InvalidConfigurationException;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
-import java.io.IOException;
+import java.sql.SQLException;
 
 
 public final class PixelCategorySG extends JavaPlugin {
 
     private static PixelCategorySG instance;
     private GameManager gameManager;
-    private String host;
-    private String database;
-    private String user;
-    private String password;
 
 
     private final YamlConfiguration conf = new YamlConfiguration();
 
+        public MySQL SQL;
+
 
     @Override
     public void onEnable() {
+
+
+        if (getServer().getPluginManager().getPlugin("Parties") != null) {
+            if (getServer().getPluginManager().getPlugin("Parties").isEnabled()) {
+                // Parties is enabled
+
+        this.SQL = new MySQL();
+
+        try {
+            SQL.connect();
+        }catch (ClassNotFoundException | SQLException e){
+            //e.printStackTrace();
+            Bukkit.getLogger().info("Database is not connected");
+
+        }
+
+        if(SQL.isConnected()){
+            Bukkit.getLogger().info("Database is connected");
+        }
+
+
+
+
         instance = this;
+
+
         getLogger().info("onEnable has been invoked!");
 
         //Config
@@ -58,25 +82,32 @@ public final class PixelCategorySG extends JavaPlugin {
         //ScoreBoard
             //LobbyScoreBoard
 
-    }
 
+        gameManager.setGameState(GameState.LOBBY);
+    }
+        }
+    }
     @Override
     public void onDisable() {
+
+        SQL.disconnect();
 
         gameManager.cleanup();
         // Plugin shutdown logic
     }
 
-    public YamlConfiguration getConf() {
-
+    /*public YamlConfiguration getConf() {
     host = conf.getString("host");
     database = conf.getString("database");
     user = conf.getString("user");
     password = conf.getString("password");
         return this.conf; }
 
-
+*/
     public static PixelCategorySG getInstance() {
         return instance;
     }
+
+
+
 }

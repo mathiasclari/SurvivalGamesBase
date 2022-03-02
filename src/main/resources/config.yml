@@ -1,5 +1,6 @@
 # DATABASE INFORMATION!
 host: ""
+port: ""
 database: ""
 user: ""
 password: ""

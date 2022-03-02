@@ -11,14 +11,12 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import static org.bukkit.Bukkit.getServer;
-
 public class LobbySB implements Listener {
+
 
     private final Map<UUID, FastBoard> boards = new HashMap<>();
 
@@ -60,15 +58,13 @@ public class LobbySB implements Listener {
     private void updateBoard(FastBoard lobbysb) {
         lobbysb.updateLines(
                 "",
-                ChatColor.of("#89B6DE")+"Online Players: " + getServer().getOnlinePlayers().size(),
+                ChatColor.of("#738291")+"» "+ChatColor.of("#89B6DE")+"Kills: " + ChatColor.of("#C4CDD6")+lobbysb.getPlayer().getStatistic(Statistic.PLAYER_KILLS),
                 "",
-                ChatColor.of("#89B6DE")+"Kills: " + ChatColor.of("#C4CDD6")+lobbysb.getPlayer().getStatistic(Statistic.PLAYER_KILLS),
+                ChatColor.of("#738291")+"» "+ChatColor.of("#89B6DE")+"Wins:" + ChatColor.of("#C4CDD6")+" 10",
                 "",
-                ChatColor.of("#89B6DE")+"Wins:" + ChatColor.of("#C4CDD6")+" 10",
+                ChatColor.of("#738291")+"» "+ChatColor.of("#89B6DE")+"Deaths: " + ChatColor.of("#C4CDD6")+lobbysb.getPlayer().getStatistic(Statistic.DEATHS),
                 "",
-                ChatColor.of("#89B6DE")+"Deaths: " + ChatColor.of("#C4CDD6")+lobbysb.getPlayer().getStatistic(Statistic.DEATHS),
-                "",
-                ChatColor.of("#89B6DE")+"Coins:" + ChatColor.of("#C4CDD6")+" 1000",
+                ChatColor.of("#738291")+"» "+ChatColor.of("#89B6DE")+"Coins:" + ChatColor.of("#C4CDD6")+" 1000",
                 "",
                 ChatColor.of("#0F7AD9")+""+ChatColor.BOLD + "www.acticraft.net"
 
