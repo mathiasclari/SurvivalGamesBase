@@ -11,6 +11,10 @@ import net.acticraft.pixelcategorysg.MySql.MySQL;
 import net.acticraft.pixelcategorysg.ScoreBoard.LobbySB;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.player.PlayerLoginEvent;
+import org.bukkit.event.server.ServerListPingEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -42,12 +46,12 @@ public final class PixelCategorySG extends JavaPlugin {
             SQL.connect();
         }catch (ClassNotFoundException | SQLException e){
             //e.printStackTrace();
-            Bukkit.getLogger().info("Database is not connected");
+            Bukkit.getLogger().info("Database is not connected!");
 
         }
 
         if(SQL.isConnected()){
-            Bukkit.getLogger().info("Database is connected");
+            Bukkit.getLogger().info("Database is connected!");
         }
 
 
@@ -84,6 +88,7 @@ public final class PixelCategorySG extends JavaPlugin {
 
 
         gameManager.setGameState(GameState.LOBBY);
+
     }
         }
     }
