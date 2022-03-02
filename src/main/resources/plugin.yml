@@ -8,3 +8,5 @@ website: https://discord.gg/acticraft
 commands:
   vanish:
   start:
+  stop:
+  join:

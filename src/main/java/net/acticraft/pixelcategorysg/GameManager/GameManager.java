@@ -14,6 +14,8 @@ public class GameManager {
 
     private GameStartCountdownTask gameStartCountdownTask;
 
+
+
     public GameManager(PixelCategorySG plugin){
         this.plugin = plugin;
 
@@ -57,6 +59,8 @@ public class GameManager {
         public PlayerManager getPlayerManager(){
         return playerManager;
         }
+
+
 
 
 }

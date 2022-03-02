@@ -12,12 +12,21 @@ public class BlockManager {
 
     public BlockManager(GameManager gameManager){
         this.gameManager = gameManager;
-
-        allowedToBreak.add(Material.TALL_GRASS);
-        allowedToBreak.add(Material.GRASS);
     }
 
     private Set<Material> allowedToBreak = new HashSet<>();
+
+    private final Set<Block> placedByPlayer = new HashSet<>();
+
+    public void setPlaced(Block block) {
+        placedByPlayer.add(block);
+    }
+    public boolean isPlacedByPlayer(Block block) {
+        return placedByPlayer.contains(block);
+    }
+    public void reset() {
+        placedByPlayer.clear();
+    }
 
     public boolean canBreak(Block block){return allowedToBreak.contains(block.getType());}
 }
