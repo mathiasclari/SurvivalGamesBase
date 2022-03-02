@@ -8,6 +8,6 @@ public class FireSpreadListener implements Listener {
 
     @EventHandler
     public void onFireSpread(BlockBurnEvent e){
-        e.setCancelled(true);
+        e.setCancelled(false);
     }
 }
