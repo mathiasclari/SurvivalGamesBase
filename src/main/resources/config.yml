@@ -5,6 +5,17 @@ database: ""
 user: ""
 password: ""
 # OTHER VERY USEFUL INFORMATION!
+location:
+  world: "world"
+  x: -1195.5
+  y: 31
+  z: -1816.5
+spawnradius: 15
+
+max-players: 24
+min-players: 2
+
+arena-name: Kingdoms
 
 
 

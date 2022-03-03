@@ -1,20 +1,17 @@
 package net.acticraft.pixelcategorysg;
 
+import net.acticraft.pixelcategorysg.Arena.Arena;
+import net.acticraft.pixelcategorysg.Arena.ArenaGenerateRules;
 import net.acticraft.pixelcategorysg.Commands.StartCommand;
 import net.acticraft.pixelcategorysg.Commands.StopCommand;
 import net.acticraft.pixelcategorysg.GameManager.GameManager;
 import net.acticraft.pixelcategorysg.GameManager.GameState;
 import net.acticraft.pixelcategorysg.Listeners.BlockBreakListener;
-import net.acticraft.pixelcategorysg.Listeners.FireSpreadListener;
 import net.acticraft.pixelcategorysg.Listeners.MobSpawnListener;
 import net.acticraft.pixelcategorysg.MySql.MySQL;
 import net.acticraft.pixelcategorysg.ScoreBoard.LobbySB;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.player.PlayerLoginEvent;
-import org.bukkit.event.server.ServerListPingEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -24,6 +21,7 @@ import java.sql.SQLException;
 public final class PixelCategorySG extends JavaPlugin {
 
     private static PixelCategorySG instance;
+    public Arena arena;
     private GameManager gameManager;
 
 
@@ -34,6 +32,9 @@ public final class PixelCategorySG extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        getServer().getPluginManager().registerEvents(new ArenaGenerateRules(this),this);
+        this.saveDefaultConfig();
+        arena = new Arena(this.getConfig());
 
 
         if (getServer().getPluginManager().getPlugin("Parties") != null) {
@@ -77,7 +78,6 @@ public final class PixelCategorySG extends JavaPlugin {
         //ScoreBoard Listener
         getServer().getPluginManager().registerEvents(new LobbySB(),this);
         //
-        getServer().getPluginManager().registerEvents(new FireSpreadListener(),this);
         getServer().getPluginManager().registerEvents(new MobSpawnListener(),this);
 
         getCommand("start").setExecutor(new StartCommand(gameManager));

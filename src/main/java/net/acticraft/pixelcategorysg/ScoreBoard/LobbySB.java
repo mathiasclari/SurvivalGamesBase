@@ -58,11 +58,11 @@ public class LobbySB implements Listener {
     private void updateBoard(FastBoard lobbysb) {
         lobbysb.updateLines(
                 "",
+                ChatColor.of("#738291")+"» "+ChatColor.of("#89B6DE")+"Map:" + ChatColor.of("#C4CDD6")+" Kingdoms",
+                "",
                 ChatColor.of("#738291")+"» "+ChatColor.of("#89B6DE")+"Kills: " + ChatColor.of("#C4CDD6")+lobbysb.getPlayer().getStatistic(Statistic.PLAYER_KILLS),
                 "",
-                ChatColor.of("#738291")+"» "+ChatColor.of("#89B6DE")+"Wins:" + ChatColor.of("#C4CDD6")+" 10",
-                "",
-                ChatColor.of("#738291")+"» "+ChatColor.of("#89B6DE")+"Deaths: " + ChatColor.of("#C4CDD6")+lobbysb.getPlayer().getStatistic(Statistic.DEATHS),
+                ChatColor.of("#738291")+"» "+ChatColor.of("#89B6DE")+"Teams left:" + ChatColor.of("#C4CDD6")+" 10",
                 "",
                 ChatColor.of("#738291")+"» "+ChatColor.of("#89B6DE")+"Coins:" + ChatColor.of("#C4CDD6")+" 1000",
                 "",
