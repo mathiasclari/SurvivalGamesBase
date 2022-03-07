@@ -7,9 +7,9 @@ import net.acticraft.pixelcategorysg.Commands.StopCommand;
 import net.acticraft.pixelcategorysg.GameManager.GameManager;
 import net.acticraft.pixelcategorysg.GameManager.GameState;
 import net.acticraft.pixelcategorysg.Listeners.BlockBreakListener;
-import net.acticraft.pixelcategorysg.Listeners.MobSpawnListener;
+import net.acticraft.pixelcategorysg.Listeners.ConnectListener;
 import net.acticraft.pixelcategorysg.MySql.MySQL;
-import net.acticraft.pixelcategorysg.ScoreBoard.LobbySB;
+import net.acticraft.pixelcategorysg.ScoreBoard.ScoreBoard;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -32,7 +32,10 @@ public final class PixelCategorySG extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        instance = this;
         getServer().getPluginManager().registerEvents(new ArenaGenerateRules(this),this);
+        getServer().getPluginManager().registerEvents(new ConnectListener(),this);
+        getServer().getPluginManager().registerEvents(new BlockBreakListener(gameManager),this);
         this.saveDefaultConfig();
         arena = new Arena(this.getConfig());
 
@@ -58,7 +61,6 @@ public final class PixelCategorySG extends JavaPlugin {
 
 
 
-        instance = this;
 
 
         getLogger().info("onEnable has been invoked!");
@@ -74,11 +76,10 @@ public final class PixelCategorySG extends JavaPlugin {
         //MiniGame Files
         this.gameManager = new GameManager(this);
 
-        getServer().getPluginManager().registerEvents(new BlockBreakListener(gameManager),this);
         //ScoreBoard Listener
-        getServer().getPluginManager().registerEvents(new LobbySB(),this);
+        getServer().getPluginManager().registerEvents(new ScoreBoard(),this);
+
         //
-        getServer().getPluginManager().registerEvents(new MobSpawnListener(),this);
 
         getCommand("start").setExecutor(new StartCommand(gameManager));
         getCommand("stop").setExecutor(new StopCommand(gameManager));

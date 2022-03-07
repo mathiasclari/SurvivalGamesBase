@@ -29,7 +29,7 @@ public class GameStartCountdownTask extends BukkitRunnable {
 
         }
         if (timeLeft <= 5) {
-            Bukkit.getOnlinePlayers().forEach(player -> player.sendTitle(ChatColor.RED + String.valueOf(timeLeft), ChatColor.GRAY + "seconds until game starts!", 10, 20, 10));
+            Bukkit.getOnlinePlayers().forEach(player -> player.sendTitle(ChatColor.DARK_PURPLE + String.valueOf(timeLeft), ChatColor.GRAY + "seconds until game starts!", 10, 20, 10));
         }
 
         Bukkit.broadcastMessage(timeLeft + " until game starts");

@@ -15,12 +15,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class LobbySB implements Listener {
+public class ScoreBoard implements Listener {
 
 
     private final Map<UUID, FastBoard> boards = new HashMap<>();
 
-    public LobbySB() {
+    public ScoreBoard() {
         Bukkit.getServer().getScheduler().runTaskTimer(PixelCategorySG.getInstance(), () -> {
             for (FastBoard board : this.boards.values()) {
                 updateBoard(board);

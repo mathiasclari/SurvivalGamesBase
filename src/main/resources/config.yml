@@ -7,10 +7,10 @@ password: ""
 # OTHER VERY USEFUL INFORMATION!
 location:
   world: "world"
-  x: -1195.5
-  y: 31
-  z: -1816.5
-spawnradius: 15
+  x: 937.5
+  y: 21
+  z: 887.5
+spawnradius: 16
 
 max-players: 24
 min-players: 2
