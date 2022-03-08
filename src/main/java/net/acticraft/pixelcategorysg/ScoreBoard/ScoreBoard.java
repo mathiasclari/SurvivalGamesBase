@@ -62,10 +62,6 @@ public class ScoreBoard implements Listener {
                 "",
                 ChatColor.of("#738291")+"» "+ChatColor.of("#89B6DE")+"Kills: " + ChatColor.of("#C4CDD6")+lobbysb.getPlayer().getStatistic(Statistic.PLAYER_KILLS),
                 "",
-                ChatColor.of("#738291")+"» "+ChatColor.of("#89B6DE")+"Teams left:" + ChatColor.of("#C4CDD6")+" 10",
-                "",
-                ChatColor.of("#738291")+"» "+ChatColor.of("#89B6DE")+"Coins:" + ChatColor.of("#C4CDD6")+" 1000",
-                "",
                 ChatColor.of("#0F7AD9")+""+ChatColor.BOLD + "www.acticraft.net"
 
 

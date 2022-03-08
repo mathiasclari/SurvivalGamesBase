@@ -1,4 +1,4 @@
-package net.acticraft.pixelcategorysg.MySql;
+/*package net.acticraft.pixelcategorysg.MySql;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -43,7 +43,7 @@ public class MySQL {
     }
 
 
-
+*/
 
 
 

@@ -30,7 +30,7 @@ public final class PixelCategorySG extends JavaPlugin {
 
     private final YamlConfiguration conf = new YamlConfiguration();
 
-        public MySQL SQL;
+     //   public MySQL SQL;
 
 
     @Override
@@ -46,6 +46,9 @@ public final class PixelCategorySG extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PregameListener(gameManager),this);
         getServer().getPluginManager().registerEvents(chestManager, this);
         getServer().getPluginManager().registerEvents(new OnDeathEvent(), this);
+        getServer().getPluginManager().registerEvents(new ScoreBoard(),this);
+        getCommand("start").setExecutor(new StartCommand(gameManager));
+        getCommand("stop").setExecutor(new StopCommand(gameManager));
 
 
         this.saveDefaultConfig();
@@ -59,7 +62,7 @@ public final class PixelCategorySG extends JavaPlugin {
                 chestManager.resetChests();
                 // Parties is enabled
 
-        this.SQL = new MySQL();
+    /*    this.SQL = new MySQL();
 
         try {
             SQL.connect();
@@ -74,7 +77,7 @@ public final class PixelCategorySG extends JavaPlugin {
         }
 
 
-
+*/
 
 
 
@@ -92,12 +95,8 @@ public final class PixelCategorySG extends JavaPlugin {
 
 
         //ScoreBoard Listener
-        getServer().getPluginManager().registerEvents(new ScoreBoard(),this);
 
         //
-
-        getCommand("start").setExecutor(new StartCommand(gameManager));
-        getCommand("stop").setExecutor(new StopCommand(gameManager));
 
         //ScoreBoard
             //LobbyScoreBoard
@@ -111,7 +110,7 @@ public final class PixelCategorySG extends JavaPlugin {
     @Override
     public void onDisable() {
 
-        SQL.disconnect();
+//        SQL.disconnect();
 
         gameManager.cleanup();
         // Plugin shutdown logic

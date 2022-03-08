@@ -37,11 +37,9 @@ public class GameManager {
             case ACTIVE:
                 if(this.gameStartCountdownTask != null) this.gameStartCountdownTask.cancel();
 
-                Bukkit.broadcastMessage("Active!");
                 getPlayerManager().giveKits();
                 break;
             case STARTING:
-                Bukkit.broadcastMessage("Starting!");
                 // start countdown task
                 // teleport players
                 // clear inventories
