@@ -61,6 +61,7 @@ public class GameManager {
         }
 
 
-
-
+    public GameState getGameState() {
+        return gameState;
+    }
 }

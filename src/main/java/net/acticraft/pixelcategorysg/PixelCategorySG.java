@@ -4,10 +4,13 @@ import net.acticraft.pixelcategorysg.Arena.Arena;
 import net.acticraft.pixelcategorysg.Arena.ArenaGenerateRules;
 import net.acticraft.pixelcategorysg.Commands.StartCommand;
 import net.acticraft.pixelcategorysg.Commands.StopCommand;
+import net.acticraft.pixelcategorysg.Event.ChestManager;
+import net.acticraft.pixelcategorysg.Event.OnDeathEvent;
 import net.acticraft.pixelcategorysg.GameManager.GameManager;
 import net.acticraft.pixelcategorysg.GameManager.GameState;
 import net.acticraft.pixelcategorysg.Listeners.BlockBreakListener;
 import net.acticraft.pixelcategorysg.Listeners.ConnectListener;
+import net.acticraft.pixelcategorysg.Listeners.PregameListener;
 import net.acticraft.pixelcategorysg.MySql.MySQL;
 import net.acticraft.pixelcategorysg.ScoreBoard.ScoreBoard;
 import org.bukkit.Bukkit;
@@ -23,7 +26,7 @@ public final class PixelCategorySG extends JavaPlugin {
     private static PixelCategorySG instance;
     public Arena arena;
     private GameManager gameManager;
-
+    private ChestManager chestManager;
 
     private final YamlConfiguration conf = new YamlConfiguration();
 
@@ -32,16 +35,28 @@ public final class PixelCategorySG extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        saveDefaultConfig();
+        chestManager = new ChestManager(getConfig());
         instance = this;
+        this.gameManager = new GameManager(this);
         getServer().getPluginManager().registerEvents(new ArenaGenerateRules(this),this);
         getServer().getPluginManager().registerEvents(new ConnectListener(),this);
         getServer().getPluginManager().registerEvents(new BlockBreakListener(gameManager),this);
+        getServer().getPluginManager().registerEvents(new ChestManager(this.getConfig()),this);
+        getServer().getPluginManager().registerEvents(new PregameListener(gameManager),this);
+        getServer().getPluginManager().registerEvents(chestManager, this);
+        getServer().getPluginManager().registerEvents(new OnDeathEvent(), this);
+
+
         this.saveDefaultConfig();
-        arena = new Arena(this.getConfig());
+        arena = new Arena(gameManager, this.getConfig());
+        arena.checkReq();
 
 
         if (getServer().getPluginManager().getPlugin("Parties") != null) {
             if (getServer().getPluginManager().getPlugin("Parties").isEnabled()) {
+
+                chestManager.resetChests();
                 // Parties is enabled
 
         this.SQL = new MySQL();
@@ -74,7 +89,7 @@ public final class PixelCategorySG extends JavaPlugin {
 
 
         //MiniGame Files
-        this.gameManager = new GameManager(this);
+
 
         //ScoreBoard Listener
         getServer().getPluginManager().registerEvents(new ScoreBoard(),this);

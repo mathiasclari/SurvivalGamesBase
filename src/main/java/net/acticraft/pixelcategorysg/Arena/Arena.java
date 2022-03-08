@@ -1,6 +1,9 @@
 package net.acticraft.pixelcategorysg.Arena;
 
+import net.acticraft.pixelcategorysg.GameManager.GameManager;
 import net.acticraft.pixelcategorysg.GameManager.GameState;
+import net.acticraft.pixelcategorysg.PixelCategorySG;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -12,15 +15,19 @@ import java.util.*;
 public class Arena {
     public String worldname;
     public Location center;
-    public List<Location> spawnLocations=new ArrayList<>();
+    public List<Location> spawnLocations = new ArrayList<>();
     public int maxplayers;
     public int minplayers;
     public double range;
-    public List<Boolean> takenPoz=new ArrayList<>();
-    public Map<UUID,PlayerData> playersInGame = new HashMap<UUID,PlayerData>();
+    public List<Boolean> takenPoz = new ArrayList<>();
+    public Map<UUID, PlayerData> playersInGame = new HashMap<UUID, PlayerData>();
     public GameState gameState = GameState.LOBBY;
+    private GameManager gameManager;
 
-    public Arena(FileConfiguration config) {
+
+
+    public Arena(GameManager gameManager, FileConfiguration config) {
+        this.gameManager = gameManager;
         worldname = config.getString("location.world");
         minplayers = config.getInt("min-players");
         maxplayers = config.getInt("max-players");
@@ -30,13 +37,13 @@ public class Arena {
 
     public void setWorld(World world, FileConfiguration config) {
         double y = config.getDouble("location.y");
-        center = new Location(world, config.getDouble("location.x"), y,config.getDouble("location.z"));
-        for (int i = 0;i<maxplayers;i++){
-            double rad = (double) i/maxplayers*Math.PI*2;
-            double z = Math.sin(rad)*range;
-            double x = Math.cos(rad)*range;
-            float yaw = (float) (rad/(Math.PI*2)*360+90);
-            Location l = new Location(world,x+center.getX(),0+center.getY(),z+center.getZ()).getBlock().getLocation().add(0.5,0,0.5);
+        center = new Location(world, config.getDouble("location.x"), y, config.getDouble("location.z"));
+        for (int i = 0; i < maxplayers; i++) {
+            double rad = (double) i / maxplayers * Math.PI * 2;
+            double z = Math.sin(rad) * range;
+            double x = Math.cos(rad) * range;
+            float yaw = (float) (rad / (Math.PI * 2) * 360 + 90);
+            Location l = new Location(world, x + center.getX(), 0 + center.getY(), z + center.getZ()).getBlock().getLocation().add(0.5, 0, 0.5);
             l.setYaw(yaw);
             spawnLocations.add(l);
             l.getBlock().setType(Material.IRON_TRAPDOOR);
@@ -50,27 +57,26 @@ public class Arena {
 
 
     public void PlayerJoin(Player player) {
-        if(!gameState.equals(GameState.LOBBY)){
+        if (!gameState.equals(GameState.LOBBY)) {
             //TODO kick player
             return;
         }
         int index = -1;
-        for (int i = 0;i<takenPoz.size();i++) {
+        for (int i = 0; i < takenPoz.size(); i++) {
             if (!takenPoz.get(i)) {
                 index = i;
                 break;
             }
         }
-        if(index > -1){
-            takenPoz.set(index,true);
+        if (index > -1) {
+            takenPoz.set(index, true);
             PlayerData playerData = new PlayerData(index, player);
-            playersInGame.put(player.getUniqueId(),playerData);
+            playersInGame.put(player.getUniqueId(), playerData);
             player.teleport(spawnLocations.get(index));
             System.out.println(spawnLocations.get(index).getYaw());
 
 
-        }
-        else{
+        } else {
 
             //TODO kick player
         }
@@ -79,7 +85,23 @@ public class Arena {
     }
 
     public void PlayerLeave(Player player) {
+        PlayerData playerData = playersInGame.remove(player.getUniqueId());
+        takenPoz.set(playerData.startIndex, false);
     }
 
 
+    public void checkReq() {
+        Bukkit.getScheduler().scheduleSyncRepeatingTask( PixelCategorySG.getInstance(), () -> {
+            if (gameManager.getGameState().equals(GameState.LOBBY)) {
+                if (Bukkit.getOnlinePlayers().size() >= minplayers) {
+                    // set the state to running
+                    gameManager.setGameState(GameState.STARTING);
+                } else if (gameManager.getGameState().equals(GameState.STARTING)) {
+                    gameManager.setGameState(GameState.LOBBY);
+                    // cancel start, there's less than 12 players
+                }
+            }
+        }, 0, 20);
+
+    }
 }
