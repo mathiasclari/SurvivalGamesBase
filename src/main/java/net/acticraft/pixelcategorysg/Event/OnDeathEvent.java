@@ -29,7 +29,6 @@ public class OnDeathEvent implements Listener {
         p.setGameMode(GameMode.ADVENTURE);
 
         p.setAllowFlight(true);
-        p.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 9999, 2, true, false));
         p.dropItem(false);
         p.setCanPickupItems(false);
         p.playSound(p.getLocation(), Sound.ENTITY_CAT_DEATH, 500.0f, 1.0f);
@@ -37,6 +36,7 @@ public class OnDeathEvent implements Listener {
         p.setHealth(1);
         p.setHealthScale(1);
         p.sendTitle(ChatColor.DARK_PURPLE + "YOU HAVE BEEN MURDERED", ChatColor.GRAY + "good luck next time!", 10, 20, 10);
+        p.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 9999, 2, true, false));
 
 
 
