@@ -11,9 +11,8 @@ softdepend: [Parties]
 
 commands:
   vanish:
-  start:
-  stop:
+  gstart:
   join:
-  
+  gstop:
 
 load: STARTUP

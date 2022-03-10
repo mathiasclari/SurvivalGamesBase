@@ -13,7 +13,12 @@ public class JoinGameEvent implements Listener {
 
     @EventHandler
     private void onJoin(PlayerJoinEvent e){
-
+        Player p = e.getPlayer();
+        p.setInvulnerable(false);
+        p.setHealth(20);
+        p.setHealthScale(20);
+        p.getInventory().clear();
+        p.setCanPickupItems(true);
 
     }
 }
