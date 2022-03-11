@@ -25,7 +25,7 @@ public class ArenaGenerateRules implements Listener {
         e.getWorld().setGameRule(GameRule.MOB_GRIEFING, false);
         e.getWorld().setGameRule(GameRule.RANDOM_TICK_SPEED, 0);
         e.getWorld().setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, false);
-        e.getWorld().setTime(6000);
+        e.getWorld().setTime(3000);
         e.getWorld().setStorm(false);
         e.getWorld().setAutoSave(false);
         if(e.getWorld().getName().equals(plugin.arena.worldname)){
