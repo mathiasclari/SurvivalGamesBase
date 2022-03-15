@@ -17,7 +17,7 @@ public class GameStartCountdownTask extends BukkitRunnable {
         this.gameManager = gameManager;
     }
 
-    private int timeLeft = 15;
+    private int timeLeft = 10;
 
 
     @Override
