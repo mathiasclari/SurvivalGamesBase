@@ -1,9 +1,9 @@
 # DATABASE INFORMATION!
-host: ""
-port: ""
-database: ""
-user: ""
-password: ""
+host: 95.216.114.133
+port: 3306
+database: s40_DataBaseTest
+user: u40_A7PvbHwklq
+password: W1Seg+61w90l=LhMiocsSs9O
 # OTHER VERY USEFUL INFORMATION!
 location:
   world: "world"
