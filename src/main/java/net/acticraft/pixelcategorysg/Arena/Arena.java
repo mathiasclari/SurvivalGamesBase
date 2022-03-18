@@ -23,7 +23,8 @@ public class Arena {
     public Map<UUID, PlayerData> playersInGame = new HashMap<UUID, PlayerData>();
     public GameState gameState = GameState.LOBBY;
     private GameManager gameManager;
-
+    private int protectionSec = 20;
+    private long timeStarted;
 
 
     public Arena(GameManager gameManager, FileConfiguration config) {
@@ -57,10 +58,16 @@ public class Arena {
 
 
     public void PlayerJoin(Player player) {
+
         if (!gameState.equals(GameState.LOBBY)) {
+
             //TODO kick player
             return;
         }
+        if(Bukkit.getOnlinePlayers().size()>=minplayers){
+            PixelCategorySG.getInstance().gameManager.setGameState(GameState.STARTING);
+        }
+
         int index = -1;
         for (int i = 0; i < takenPoz.size(); i++) {
             if (!takenPoz.get(i)) {
@@ -89,19 +96,11 @@ public class Arena {
         takenPoz.set(playerData.startIndex, false);
     }
 
+    public boolean CanDamage() {
+        return System.currentTimeMillis()-1000*protectionSec>timeStarted;
+    }
 
-    public void checkReq() {
-        Bukkit.getScheduler().scheduleSyncRepeatingTask( PixelCategorySG.getInstance(), () -> {
-            if (gameManager.getGameState().equals(GameState.LOBBY)) {
-                if (Bukkit.getOnlinePlayers().size() >= minplayers) {
-                    // set the state to running
-                    gameManager.setGameState(GameState.STARTING);
-                } else if (gameManager.getGameState().equals(GameState.STARTING)) {
-                    gameManager.setGameState(GameState.LOBBY);
-                    // cancel start, there's less than 12 players
-                }
-            }
-        }, 0, 20);
-
+    public void StartGame() {
+        timeStarted = System.currentTimeMillis();
     }
 }

@@ -2,8 +2,9 @@ package net.acticraft.pixelcategorysg.Tasks;
 
 import net.acticraft.pixelcategorysg.GameManager.GameManager;
 import net.acticraft.pixelcategorysg.GameManager.GameState;
+import net.acticraft.pixelcategorysg.PixelCategorySG;
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -17,7 +18,7 @@ public class GameStartCountdownTask extends BukkitRunnable {
         this.gameManager = gameManager;
     }
 
-    private int timeLeft = 15;
+    private int timeLeft = 20;
 
 
     @Override
@@ -26,35 +27,18 @@ public class GameStartCountdownTask extends BukkitRunnable {
         if (timeLeft <= 0) {
             cancel();
             gameManager.setGameState(GameState.ACTIVE);
+            PixelCategorySG.getInstance().arena.StartGame();
             return;
 
 
         }
-        if (timeLeft <= 5) {
-            Bukkit.getOnlinePlayers().forEach(player -> player.sendTitle(ChatColor.DARK_PURPLE + String.valueOf(timeLeft), ChatColor.GRAY + "seconds until game starts!", 10, 20, 10));
-        }
-        if (timeLeft <= 5){
-            Bukkit.getOnlinePlayers().forEach(player -> player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 500.0f, 1.0f));
-        }
-        if (timeLeft <= 4){
-            Bukkit.getOnlinePlayers().forEach(player -> player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 500.0f, 1.0f));
-        }
-        if (timeLeft <= 3){
-            Bukkit.getOnlinePlayers().forEach(player -> player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 500.0f, 1.0f));
-        }
-        if (timeLeft <= 2){
-            Bukkit.getOnlinePlayers().forEach(player -> player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 500.0f, 1.0f));
-        }
-        if (timeLeft <= 1){
-            Bukkit.getOnlinePlayers().forEach(player -> player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 500.0f, 1.0f));
-        }
-        if (timeLeft <= 0){
-            Bukkit.getOnlinePlayers().forEach(player -> player.playSound(player.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 500.0f, 1.0f));
-        }
 
-        Bukkit.broadcastMessage(timeLeft + " until game starts");
+        if(timeLeft == 15 ||timeLeft == 10 || timeLeft <= 5) {
+            Bukkit.getOnlinePlayers().forEach(player -> player.sendTitle(ChatColor.of("#0F7AD9") + String.valueOf(timeLeft), ChatColor.GRAY + "seconds until game starts!", 10, 20, 10));
+            Bukkit.broadcastMessage(ChatColor.of("#0F7AD9")+""+timeLeft + " until game starts");
+            Bukkit.getOnlinePlayers().forEach(player -> player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 500.0f, 1.0f));
 
-
+        }
     }
 
 }

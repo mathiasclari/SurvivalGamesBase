@@ -37,7 +37,14 @@ public class GameManager {
             case ACTIVE:
                 if(this.gameStartCountdownTask != null) this.gameStartCountdownTask.cancel();
 
+
                 getPlayerManager().giveKits();
+                break;
+            case LOBBY:
+                if(this.gameStartCountdownTask != null) this.gameStartCountdownTask.cancel();
+
+
+
                 break;
             case STARTING:
                 // start countdown task
