@@ -66,6 +66,7 @@ public class Arena {
         }
         if(Bukkit.getOnlinePlayers().size()>=minplayers){
             PixelCategorySG.getInstance().gameManager.setGameState(GameState.STARTING);
+            Bukkit.getWorld("world").getWorldBorder().setSize(65,1500);
         }
 
         int index = -1;

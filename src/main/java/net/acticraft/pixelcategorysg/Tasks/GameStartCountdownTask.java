@@ -19,6 +19,7 @@ public class GameStartCountdownTask extends BukkitRunnable {
     }
 
     private int timeLeft = 20;
+    private int deathmatch = 900;
 
 
     @Override
@@ -40,5 +41,7 @@ public class GameStartCountdownTask extends BukkitRunnable {
 
         }
     }
+
+    
 
 }

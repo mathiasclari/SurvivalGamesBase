@@ -28,6 +28,9 @@ public class ArenaGenerateRules implements Listener {
         e.getWorld().setTime(3000);
         e.getWorld().setStorm(false);
         e.getWorld().setAutoSave(false);
+        e.getWorld().getWorldBorder().setCenter(937,887);
+        e.getWorld().getWorldBorder().setSize(545);
+        e.getWorld().getWorldBorder().setDamageAmount(5);
         if(e.getWorld().getName().equals(plugin.arena.worldname)){
             plugin.arena.setWorld(e.getWorld(),plugin.getConfig());
         }
