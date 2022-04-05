@@ -69,4 +69,8 @@ public class GameManager {
     public GameState getGameState() {
         return gameState;
     }
+
+    public  void  Restart(GameState gameState){
+        if(this.gameState == GameState.ACTIVE && gameState == GameState.STARTING) return;
+        if(this.gameState == gameState) return;}
 }

@@ -19,6 +19,8 @@ public class GameEvent implements Listener {
         Player p = e.getPlayer();
         p.setInvulnerable(false);
         p.setHealth(20);
+        p.setExp(0);
+        p.setLevel(0);
         p.setFoodLevel(20);
         p.setHealthScale(20);
         p.getInventory().clear();

@@ -54,7 +54,7 @@ public class ScoreBoard implements Listener {
 
     }
 
-
+//TODO do a scoreboard
     private void updateBoard(FastBoard lobbysb) {
         lobbysb.updateLines(
                 "",
@@ -66,6 +66,8 @@ public class ScoreBoard implements Listener {
 
 
         );
+
+
     }
 
 
