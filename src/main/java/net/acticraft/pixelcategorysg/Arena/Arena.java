@@ -66,7 +66,6 @@ public void PlayerJoin(Player player) {
     }
     if(Bukkit.getOnlinePlayers().size()>=minplayers){
         PixelCategorySG.getInstance().gameManager.setGameState(GameState.STARTING);
-        Bukkit.getWorld("world").getWorldBorder().setSize(65,1500);
     }
 
     int index = -1;
@@ -104,4 +103,15 @@ public boolean CanDamage() {
 public void StartGame() {
     timeStarted = System.currentTimeMillis();
 }
+
+    public void EndGame() {
+
+    if(gameState.equals(GameState.ACTIVE)){
+        if(playersInGame.size() == 1){
+            PixelCategorySG.getInstance().gameManager.setGameState(GameState.WON);
+
+        }
+    }
+    }
+
 }

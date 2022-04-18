@@ -1,9 +1,9 @@
 # DATABASE INFORMATION!
 host: 95.216.114.133
 port: 3306
-database: s40_DataBaseTest
-user: u40_A7PvbHwklq
-password: W1Seg+61w90l=LhMiocsSs9O
+database:
+user:
+password:
 # OTHER VERY USEFUL INFORMATION!
 location:
   world: "world"
@@ -48,10 +48,10 @@ lootItems:
     minAmount: 1
     maxAmount: 1
   5:
-    material: STONE
+    material: GOLD_AXE
     chance: 0.4
-    minAmount: 24
-    maxAmount: 24
+    minAmount: 1
+    maxAmount: 1
   7:
     material: LEATHER_BOOTS
     chance: 0.5

@@ -1,7 +1,9 @@
 package net.acticraft.pixelcategorysg.GameManager;
 
 import net.acticraft.pixelcategorysg.PixelCategorySG;
+import net.acticraft.pixelcategorysg.Tasks.DeathmatchCountDownTask;
 import net.acticraft.pixelcategorysg.Tasks.GameStartCountdownTask;
+import net.acticraft.pixelcategorysg.Tasks.WonTimer;
 import org.bukkit.Bukkit;
 
 public class GameManager {
@@ -13,6 +15,9 @@ public class GameManager {
 
 
     private GameStartCountdownTask gameStartCountdownTask;
+    private DeathmatchCountDownTask deathmatchCountDownTask;
+
+    private WonTimer wonTimer;
 
 
 
@@ -25,24 +30,23 @@ public class GameManager {
 
     }
 
-    public  void  setGameState(GameState gameState){
-        if(this.gameState == GameState.ACTIVE && gameState == GameState.STARTING) return;
-        if(this.gameState == gameState) return;
+    public  void  setGameState(GameState gameState) {
+        if (this.gameState == GameState.ACTIVE && gameState == GameState.STARTING) return;
+        if (this.gameState == gameState) return;
 
 
         this.gameState = gameState;
 
 
-        switch (gameState){
+        switch (gameState) {
             case ACTIVE:
-                if(this.gameStartCountdownTask != null) this.gameStartCountdownTask.cancel();
-
-
-                getPlayerManager().giveKits();
+                if (this.gameStartCountdownTask != null) this.gameStartCountdownTask.cancel();
+                this.deathmatchCountDownTask = new DeathmatchCountDownTask(this);
+                this.deathmatchCountDownTask.runTaskTimer(plugin, 0, 20);
                 break;
-            case LOBBY:
-                if(this.gameStartCountdownTask != null) this.gameStartCountdownTask.cancel();
 
+            case LOBBY:
+                if (this.gameStartCountdownTask != null) this.gameStartCountdownTask.cancel();
 
 
                 break;
@@ -52,11 +56,19 @@ public class GameManager {
                 // clear inventories
                 // etc
                 this.gameStartCountdownTask = new GameStartCountdownTask(this);
-                this.gameStartCountdownTask.runTaskTimer(plugin, 0,20);
+                this.gameStartCountdownTask.runTaskTimer(plugin, 0, 20);
                 break;
+
+            case PREDEATHMATCH:
+                break;
+
+            case WON:
+                this.wonTimer = new WonTimer(this);
+                this.wonTimer.runTaskTimer(plugin, 0, 20);
+                break;
+
         }
     }
-
     public void cleanup(){
 
     }
