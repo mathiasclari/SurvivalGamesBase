@@ -18,7 +18,7 @@ public class DeathmatchCountDownTask extends BukkitRunnable {
         this.gameManager = gameManager;
     }
 
-    private int timer = 30;
+    private int timer = 900;
 
 
     @Override
@@ -35,7 +35,7 @@ public class DeathmatchCountDownTask extends BukkitRunnable {
 
         }
 
-        if(timer % 5 == 0 || timer < 5){
+        if(timer < 5){
             Bukkit.broadcastMessage(ChatColor.of("#0F7AD9")+""+timer + " seconds until Deathmatch");
             Bukkit.getOnlinePlayers().forEach(player -> player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 500.0f, 1.0f));
 

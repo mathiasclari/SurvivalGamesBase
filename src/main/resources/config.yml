@@ -30,21 +30,21 @@ lootItems:
   1:
     material: APPLE
     chance: 0.6
-    minAmount: 2
-    maxAmount: 7
+    minAmount: 1
+    maxAmount: 3
   2:
     material: COOKED_BEEF
     chance: 0.3
-    minAmount: 3
-    maxAmount: 6
+    minAmount: 1
+    maxAmount: 2
   3:
     material: BOW
-    chance: 0.2
+    chance: 0.1
     minAmount: 1
     maxAmount: 1
   4:
     material: IRON_SWORD
-    chance: 0.01
+    chance: 0.09
     minAmount: 1
     maxAmount: 1
   5:
@@ -84,7 +84,7 @@ lootItems:
     maxAmount: 1
   15:
     material: IRON_PICKAXE
-    chance: 0.4
+    chance: 0.09
     minAmount: 1
     maxAmount: 1
   16:
@@ -149,17 +149,17 @@ lootItems:
     maxAmount: 1
   28:
     material: DIAMOND_AXE
-    chance: 0.1
+    chance: 0.05
     minAmount: 1
     maxAmount: 1
   29:
     material: DIAMOND
-    chance: 0.3
+    chance: 0.07
     minAmount: 1
     maxAmount: 1
   30:
     material: IRON_INGOT
-    chance: 0.5
+    chance: 0.1
     minAmount: 1
     maxAmount: 3
   31:
@@ -184,22 +184,22 @@ lootItems:
     maxAmount: 1
   35:
     material: IRON_CHESTPLATE
-    chance: 0.2
+    chance: 0.09
     minAmount: 1
     maxAmount: 1
   36:
     material: IRON_BOOTS
-    chance: 0.2
+    chance: 0.09
     minAmount: 1
     maxAmount: 1
   37:
     material: IRON_LEGGINGS
-    chance: 0.2
+    chance: 0.09
     minAmount: 1
     maxAmount: 1
   38:
     material: IRON_HELMET
-    chance: 0.2
+    chance: 0.09
     minAmount: 1
     maxAmount: 1
   39:

@@ -26,17 +26,13 @@ public class WonTimer extends BukkitRunnable {
         timer--;
         if (timer <= 0) {
             cancel();
-            gameManager.setGameState(GameState.RESTARTING);
-            return;
-
-
-        }
-
-        if(timer == 0) {
-            Bukkit.getServer().shutdown();;
+            Bukkit.getServer().shutdown();
+            if(timer == 10 ||timer == 7 || timer <= 5) {
+                Bukkit.getOnlinePlayers().forEach(player -> player.sendTitle(ChatColor.of("#0F7AD9") + String.valueOf(timer), ChatColor.GRAY + "seconds until restart!", 10, 20, 10));
+                Bukkit.broadcastMessage(ChatColor.of("#0F7AD9")+""+timer + " until restart");
+                System.out.println("Restarting in " + timer + " seconds");
         }
     }
 
-
-
+}
 }
